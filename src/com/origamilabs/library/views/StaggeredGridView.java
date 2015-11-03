@@ -772,6 +772,10 @@ public class StaggeredGridView extends ViewGroup {
                 final int bottom = child.getBottom();
                 final LayoutRecord rec = mLayoutRecords.get(mFirstPosition + i);
 
+                if (rec == null) {
+                  continue;
+                }
+
                 final int colEnd = lp.column + Math.min(mColCount, lp.span);
                 for (int col = lp.column; col < colEnd; col++) {
                     final int colTop = top - rec.getMarginAbove(col - lp.column);
@@ -1021,6 +1025,9 @@ public class StaggeredGridView extends ViewGroup {
 
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
+            if (child == null) {
+              continue;
+            }
             LayoutParams lp = (LayoutParams) child.getLayoutParams();
             final int col = lp.column;
             final int position = mFirstPosition + i;
